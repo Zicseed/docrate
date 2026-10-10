@@ -411,10 +411,10 @@ document.addEventListener('DOMContentLoaded', async function() {
   window.__docrateTutorialInstalled=true;
   const videoUrl='/DocRate-Tutorial-Web.mp4';
   const css=`
-  #dr-tutorial-launch{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:#14608f;color:white;padding:12px 20px;font:600 14px/1.2 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.19);transition:transform .2s,background .2s;z-index:20}
+  #dr-tutorial-launch{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(255,255,255,.25);border-radius:12px;background:#14608f;color:white;padding:11px 15px;white-space:nowrap;font:600 14px/1.2 system-ui,-apple-system,sans-serif;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.19);transition:transform .2s,background .2s;z-index:20}
   #dr-tutorial-launch:hover{background:#1a77ad;transform:translateY(-2px)}
   #dr-tutorial-launch:focus-visible,#dr-tutorial-close:focus-visible{outline:3px solid #7fd3e4;outline-offset:3px}
-  #dr-tutorial-holder{display:flex;justify-content:center;margin:18px auto 8px;width:100%;}
+  #dr-tutorial-holder{display:inline-flex;align-items:center;margin:0;width:auto;flex:0 0 auto;}
   #dr-tutorial-overlay{position:fixed;inset:0;background:rgba(3,12,22,.88);z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:22px;box-sizing:border-box}
   #dr-tutorial-dialog{width:min(960px,100%);position:relative;background:#0e1d2b;border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:14px;box-shadow:0 24px 90px rgba(0,0,0,.55);box-sizing:border-box}
   #dr-tutorial-video{display:block;width:100%;max-height:75vh;aspect-ratio:16/9;background:#000;border-radius:9px}
@@ -427,17 +427,29 @@ document.addEventListener('DOMContentLoaded', async function() {
   document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
   function mount(){
     if(location.pathname!=='/'&&location.pathname!=='/index.html')return;
-    if(!document.body||document.getElementById('dr-tutorial-launch'))return;
+    if(!document.body)return;
     // Wait for the actual application to render, rather than attaching to the temporary unpacking screen.
     if(document.getElementById('__bundler_loading')||document.getElementById('__bundler_thumbnail'))return;
     if(!document.getElementById('dr-tutorial-style')){const style=document.createElement('style');style.id='dr-tutorial-style';style.textContent=css;document.head.appendChild(style)}
-    const btn=document.createElement('button');btn.type='button';btn.id='dr-tutorial-launch';btn.innerHTML='<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg> Watch Tutorial';btn.onclick=open;
-    const h1=Array.from(document.querySelectorAll('h1')).find(e=>e.getBoundingClientRect().width>0);
-    const holder=document.createElement('div');holder.id='dr-tutorial-holder';holder.appendChild(btn);
-    if(h1&&h1.parentElement){h1.insertAdjacentElement('afterend',holder)}
-    else {holder.style.cssText='position:fixed;bottom:20px;right:20px;width:auto;margin:0;z-index:1000';document.body.appendChild(holder)}
+    const btn=document.getElementById('dr-tutorial-launch')||document.createElement('button');btn.type='button';btn.id='dr-tutorial-launch';if(!btn.firstChild)btn.innerHTML='<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></svg> Watch Tutorial';btn.onclick=open;
+    // Place the tutorial directly after the Universities dropdown in the top navigation.
+    const uniMenu=document.querySelector('nav [data-navmenu="unis"]');
+    if(!uniMenu||!uniMenu.parentElement)return;
+    let holder=document.getElementById('dr-tutorial-holder');
+    if(!holder){holder=document.createElement('div');holder.id='dr-tutorial-holder';}
+    holder.appendChild(btn);
+    if(uniMenu.nextElementSibling!==holder)uniMenu.insertAdjacentElement('afterend',holder);
+    // Remove leftover tutorial launchers from older homepage versions.
+    document.querySelectorAll('button,a').forEach(el=>{
+      if(el===btn||holder.contains(el)||el.closest('#dr-tutorial-overlay'))return;
+      if(el.textContent.trim().replace(/\s+/g,' ').toLowerCase()==='watch tutorial'){
+        const wrapper=el.closest('[id*=tutorial],[class*=tutorial]');
+        if(wrapper&&!wrapper.contains(holder)&&wrapper!==document.body)wrapper.remove();
+        else el.remove();
+      }
+    });
   }
-  const obs=new MutationObserver(()=>{if(!document.getElementById('dr-tutorial-launch'))mount()});obs.observe(document,{childList:true,subtree:true});
+  let scheduled=false;const obs=new MutationObserver(()=>{if(scheduled)return;scheduled=true;queueMicrotask(()=>{scheduled=false;mount()})});obs.observe(document,{childList:true,subtree:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',mount);else mount();
   setTimeout(mount,1500);setTimeout(mount,3500);
 })();
