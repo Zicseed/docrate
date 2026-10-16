@@ -1,6 +1,6 @@
 -- DocRate: European University Medicine - shorter names for the integrated courses.
 --   Body Systems I (...) .. IV (...)        ->  Body System I .. Body System IV  (sections: Anatomy, Physiology, Imaging)
---   Gene, Cell and Tissue I (...) .. IV (...) ->  Gene, Cell and Tissue           (same name in every semester)
+--   Gene, Cell and Tissue I (...) .. IV (...) ->  Gene, Cell and Tissue I .. IV (numbered by semester)
 -- Run once in Supabase Dashboard -> SQL Editor. Safe to re-run. Only these 8 course codes are touched.
 -- If the table layout is not what this expects, it stops without changing anything and lists the columns.
 
@@ -32,8 +32,8 @@ begin
   for r in select * from (values
     ('EU-MD-0101', 'Body System I'), ('EU-MD-0201', 'Body System II'),
     ('EU-MD-0301', 'Body System III'), ('EU-MD-0401', 'Body System IV'),
-    ('EU-MD-0102', 'Gene, Cell and Tissue'), ('EU-MD-0202', 'Gene, Cell and Tissue'),
-    ('EU-MD-0302', 'Gene, Cell and Tissue'), ('EU-MD-0402', 'Gene, Cell and Tissue')
+    ('EU-MD-0102', 'Gene, Cell and Tissue I'), ('EU-MD-0202', 'Gene, Cell and Tissue II'),
+    ('EU-MD-0302', 'Gene, Cell and Tissue III'), ('EU-MD-0402', 'Gene, Cell and Tissue IV')
   ) as t(code, new_name) loop
     if v_name_col is not null then
       execute format('update public.catalogue_courses set name = $1 where %s = $2', v_code_expr) using r.new_name, r.code;
