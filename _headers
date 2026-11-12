@@ -4,3 +4,6 @@
   X-Frame-Options: DENY
   Permissions-Policy: camera=(), microphone=(), geolocation=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
