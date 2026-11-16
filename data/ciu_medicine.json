@@ -1,0 +1,88 @@
+{
+  "note": "CIU Medicine (MD), set up course by course with Doctor Omar. Replaces the CIU MD rows of docrate_courses.csv. Semesters 7-12 still to do.",
+  "semesters": {
+    "1": [
+      { "name": "Georgian language 1", "credits": 6 },
+      { "name": "Biochemistry (General)", "credits": 5 },
+      { "name": "Physiology (General)", "credits": 5 },
+      { "name": "Body Structure with Clinical Correlations 1", "credits": 10, "sections": [
+        { "name": "Systemic Anatomy", "credits": 4 },
+        { "name": "Intro to Diagnosis", "credits": 2 },
+        { "name": "Histology and Embryology", "credits": 4 } ] },
+      { "name": "Basic Communication skills", "credits": 2 },
+      { "name": "Biophysics and Medical Physics", "credits": 3, "elective": true },
+      { "name": "Medical Chemistry", "credits": 3, "elective": true },
+      { "name": "Cell biology", "credits": 3, "elective": true }
+    ],
+    "2": [
+      { "name": "Georgian language 2", "credits": 6 },
+      { "name": "Basics of scientific research", "credits": 3 },
+      { "name": "Body Function", "credits": 9, "sections": [
+        { "name": "Physiology (Nervous System)", "credits": 5 },
+        { "name": "Biochemistry (Nervous System)", "credits": 4 } ] },
+      { "name": "Body Structure with Clinical Correlations 2", "credits": 11, "sections": [
+        { "name": "Systemic Anatomy", "credits": 5 },
+        { "name": "Intro to Diagnosis", "credits": 2 },
+        { "name": "Histology and Embryology", "credits": 4 } ] },
+      { "name": "Latin medical terminology", "credits": 2, "elective": true },
+      { "name": "History of medicine", "credits": 2, "elective": true },
+      { "name": "MS office programs and presentation skills", "credits": 2, "elective": true }
+    ],
+    "3": [
+      { "name": "Body Structure with Basic Clinical Skills in Surgery", "credits": 9, "sections": [
+        { "name": "Regional Anatomy 1", "credits": 4 },
+        { "name": "Basic Clinical Skills in Surgery", "credits": 2 },
+        { "name": "Histology (Organ Systems)", "credits": 3 } ] },
+      { "name": "Body Function", "credits": 8, "sections": [
+        { "name": "Physiology (Organ Systems)", "credits": 4 },
+        { "name": "Biochemistry (Organ Systems)", "credits": 4 } ] },
+      { "name": "Medical psychology", "credits": 3 },
+      { "name": "Medical bioethics", "credits": 3 },
+      { "name": "Molecular biology", "credits": 4 },
+      { "name": "Clinical skills – patient care and nursing", "credits": 2 }
+    ],
+    "4": [
+      { "name": "Regional anatomy II", "credits": 5 },
+      { "name": "General microbiology, bacteriology", "credits": 5 },
+      { "name": "Basic pharmacology", "credits": 4 },
+      { "name": "General pathology", "credits": 5 },
+      { "name": "Medical genetics", "credits": 3 },
+      { "name": "Epidemiology", "credits": 2 },
+      { "name": "History of the world civilizations", "credits": 5, "elective": true },
+      { "name": "Basics of psychology", "credits": 5, "elective": true },
+      { "name": "Basics of philosophy", "credits": 5, "elective": true }
+    ],
+    "5": [
+      { "name": "Fundamentals of Cardiovascular, Hematopoietic Systems Diseases", "credits": 8, "sections": [
+        { "name": "Pathology (hematopoietic, circulatory systems)", "credits": 3 },
+        { "name": "Pharmacology (hematopoietic, circulatory systems)", "credits": 2 },
+        { "name": "Physical diagnosis (General, circulatory, hematopoietic systems)", "credits": 3 } ] },
+      { "name": "Fundamentals of Respiratory Systems Diseases", "credits": 7, "sections": [
+        { "name": "Systemic pathology (Respiratory System)", "credits": 2 },
+        { "name": "Pharmacology (Respiratory System, antimicrobials)", "credits": 3 },
+        { "name": "Physical diagnosis (Respiratory System)", "credits": 2 } ] },
+      { "name": "Microbiology", "credits": 4 },
+      { "name": "Physiology of behavior", "credits": 2 },
+      { "name": "Basic Immunology", "credits": 3 },
+      { "name": "Medical imaging", "credits": 3 },
+      { "name": "Clinical skills – First aid", "credits": 3 }
+    ],
+    "6": [
+      { "name": "Fundamentals of Endocrine and Nervous Systems Diseases", "credits": 7, "sections": [
+        { "name": "Systemic Pathology (Endocrine and Nervous System)", "credits": 2 },
+        { "name": "Pharmacology (Endocrine and Nervous System)", "credits": 3 },
+        { "name": "Physical diagnosis (Endocrine and Nervous System)", "credits": 2 } ] },
+      { "name": "Fundamentals of Digestive, Urinary Systems Diseases", "credits": 7, "sections": [
+        { "name": "Systemic pathology (Digestive, Urinary Systems)", "credits": 3 },
+        { "name": "Physical diagnosis (Digestive, Urinary Systems)", "credits": 2 },
+        { "name": "Pharmacology (Digestive system)", "credits": 2 } ] },
+      { "name": "General surgery", "credits": 5 },
+      { "name": "Behavioral science", "credits": 3 },
+      { "name": "Clinical skills - Internal medicine", "credits": 3 },
+      { "name": "Scientific research skills", "credits": 2 },
+      { "name": "Sociology", "credits": 3, "elective": true },
+      { "name": "Hygiene", "credits": 3, "elective": true },
+      { "name": "General Psychology", "credits": 3, "elective": true }
+    ]
+  }
+}
